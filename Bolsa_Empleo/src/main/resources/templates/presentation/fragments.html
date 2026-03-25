@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+
+<header th:fragment="header">
+    <h1>Bolsa de Empleo</h1>
+</header>
+
+<nav th:fragment="nav">
+    <ul class="Menu">
+
+        <li><a th:href="@{/trabajos}">Buscar Puestos</a></li>
+
+        <!-- Usuario NO autenticado -->
+        <th:block sec:authorize="isAnonymous()">
+            <li><a th:href="@{/empresa/register}">Registro Empresa</a></li>
+            <li><a th:href="@{/oferente/register}">Registro Oferente</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+        </th:block>
+
+        <!-- EMPRESA -->
+        <th:block sec:authorize="hasRole('EMPRESA')">
+            <li><a th:href="@{/empresa/dashboard}">Dashboard</a></li>
+            <li><a th:href="@{/empresa/puestos}">Mis puestos</a></li>
+            <li><a th:href="@{/empresa/publicar}">Publicar puesto</a></li>
+            <li>
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        </th:block>
+
+        <!-- OFERENTE -->
+        <th:block sec:authorize="hasRole('OFERENTE')">
+            <li><a th:href="@{/oferente/dashboard}">Dashboard</a></li>
+            <li><a th:href="@{/oferente/habilidades}">Mis habilidades</a></li>
+            <li><a th:href="@{/oferente/cv}">Mi CV</a></li>
+            <li>
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        </th:block>
+
+        <!-- ADMIN -->
+        <th:block sec:authorize="hasRole('ADMIN')">
+            <li><a th:href="@{/admin/dashboard}">Dashboard</a></li>
+            <li><a th:href="@{/admin/empresas-pendientes}">Empresas pendientes</a></li>
+            <li><a th:href="@{/admin/oferentes-pendientes}">Oferentes pendientes</a></li>
+            <li><a th:href="@{/admin/caracteristicas}">Características</a></li>
+            <li><a th:href="@{/admin/reportes}">Reportes</a></li>
+            <li>
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        </th:block>
+
+    </ul>
+</nav>
+
+<footer th:fragment="footer">
+    <p>Bolsa de Empleo</p>
+</footer>
+
+</body>
+</html>

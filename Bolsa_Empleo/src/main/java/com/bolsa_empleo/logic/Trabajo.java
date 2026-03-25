@@ -10,10 +10,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "trabajos")
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Trabajo {
 
     @Id

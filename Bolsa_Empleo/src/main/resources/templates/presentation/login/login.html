@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="~{/presentation/fragments :: header}"></header>
+<nav th:replace="~{/presentation/fragments :: nav}"></nav>
+
+<main>
+
+    <div class="login-box">
+
+        <div class="form">
+
+            <div class="section">Login</div>
+
+            <div class="login-avatar">
+                👤
+            </div>
+
+            <form action="/login" method="post">
+
+                <div class="label">Correo</div>
+                <div class="field">
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="label">Contraseña</div>
+                <div class="field">
+                    <input type="password" name="password" required>
+                </div>
+
+                <div class="center mt-20">
+                    <input type="submit" value="Entrar" class="button">
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer th:replace="~{/presentation/fragments :: footer}"></footer>
+</body>
+</html>

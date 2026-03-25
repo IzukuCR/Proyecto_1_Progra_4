@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<header th:replace="~{/presentation/fragments :: header}"></header>
+
+<nav th:replace="~{/presentation/fragments :: nav}"></nav>
+
+<main>
+
+    <h1>Últimos Trabajos</h1>
+
+    <!-- Tabla para mostrar los trabajos -->
+    <div class="jobs-grid">
+
+        <div class="job-card" th:each="trabajo : ${trabajos}">
+
+            <h3 th:text="${trabajo.descripcion}">Título del puesto</h3>
+
+            <span class="salary" th:text="'₡ ' + ${trabajo.salario}">
+            ₡ 0
+        </span>
+
+            <a class="details-link"
+               th:href="@{'/trabajos/' + ${trabajo.id}}">
+                Ver detalle
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer th:replace="~{/presentation/fragments :: footer}"></footer>
+
+</body>
+</html>
